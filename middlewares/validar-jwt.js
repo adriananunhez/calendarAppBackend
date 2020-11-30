@@ -6,8 +6,6 @@ const validarJWT = ( req, res = response, next ) => {
 
     const token = req.header('x-token');
 
-    console.log(token);
-
     if( !token ){
         return res.status(401).json({
             ok: false,
@@ -16,13 +14,13 @@ const validarJWT = ( req, res = response, next ) => {
     }
 
     try {
-        console.log(process.env.SECRET_JWT_SEED);
+       // console.log(process.env.SECRET_JWT_SEED);
         const { uid, name } = jwt.verify(
             token,
             process.env.SECRET_JWT_SEED
         );
 
-        console.log(uid, name);
+        //console.log(uid, name);
 
         req.uid = uid;
         req.name = name;
